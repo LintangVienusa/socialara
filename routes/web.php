@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+Route::get('login/google/redirect', [SocialiteController::class, 'redirect'])
+    ->name('google-redirect');
+
+Route::get('login/google/callback', [SocialiteController::class, 'callback'])
+    ->name('google-callback');
+
+Route::post('logout', [SocialiteController::class, 'logout'])
+    ->name('logout');
